@@ -38,7 +38,7 @@ public class Patient extends Person {
                 "------ Assurance Info ------\n" +
                 "Company Name     : " + insurance.getCompanyName() + "\n" +
                 "Coverage Type    : " + insurance.getTypeCoverage() + "\n" +
-                "Assurance Phone  : " + insurance.getPhoneNumber() + "\n" +
+                "Assurance Phone  : " + insurance.getIphoneNumber() + "\n" +
                 "=============================\n";
     }
 }

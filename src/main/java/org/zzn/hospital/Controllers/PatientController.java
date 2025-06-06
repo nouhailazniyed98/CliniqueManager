@@ -33,4 +33,9 @@ public class PatientController {
     public void deletePatient(@PathVariable int id) {
         patientService.deletePatient(id);
         }
+
+    @GetMapping("/test")
+    public String test() {
+        return "API fonctionne !";
+    }
 }

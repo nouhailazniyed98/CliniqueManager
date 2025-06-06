@@ -5,28 +5,31 @@ import jakarta.persistence.Embeddable;
 public class Insurance {
     private String companyName;
     private String typeCoverage;
-    private String phoneNumber;
+    private String IphoneNumber;
 
     public Insurance() {}
-    public Insurance(String companyName, String typeCoverage, String phoneNumber) {
+    public Insurance(String companyName, String typeCoverage, String iPhoneNumber) {
         this.companyName = companyName;
         this.typeCoverage = typeCoverage;
-        this.phoneNumber = phoneNumber;
+       this.IphoneNumber = iPhoneNumber;
 
     }
     public String getCompanyName() {return this.companyName;}
     public void setCompanyName(String companyName) {this.companyName = companyName;}
     public String getTypeCoverage() {return this.typeCoverage;}
     public void setTypeCoverage(String typeCoverage) {this.typeCoverage = typeCoverage;}
-    public String getPhoneNumber() {return this.phoneNumber;}
-    public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
+
+    public String getIphoneNumber() {
+        return IphoneNumber;
+    }
+    public void setIphoneNumber(String iPhoneNumber) {this.IphoneNumber = iPhoneNumber;}
 
     @Override
     public String toString() {
-        return "insurance{" +
+        return "Insurance{" +
                 "companyName='" + companyName + '\'' +
                 ", typeCoverage='" + typeCoverage + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                ", IphoneNumber='" + IphoneNumber + '\'' +
                 '}';
     }
 }
