@@ -9,7 +9,7 @@ import org.zzn.hospital.Services.PersonnelService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/patients")
+@RequestMapping("/api/personnels")
 public class PersonnelController {
     private final PatientService patientService;
     private final PersonnelService personnelService;
