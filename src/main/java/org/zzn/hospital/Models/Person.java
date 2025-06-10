@@ -1,14 +1,24 @@
 package org.zzn.hospital.Models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import org.zzn.hospital.Enums.Gender;
 
 import java.time.LocalDate;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Person {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String firstName;
     private String lastName;
@@ -17,16 +27,7 @@ public class Person {
     private String address;
     private String phoneNumber;
 
-    public Person() {}
-    public Person(String firstName, String lastName, Gender gender, LocalDate birthday, String address, String phoneNumber) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.birthday = birthday;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
 
-    }
     public long getId() {return id;}
     public void setId(long id) {this.id = id;}
     public String getFirstName() {return firstName;}

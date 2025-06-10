@@ -1,27 +1,25 @@
 package org.zzn.hospital.Models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import org.zzn.hospital.Enums.BloodType;
 
 @Entity
+@AllArgsConstructor @NoArgsConstructor
+@Getter @Setter 
+@Builder
 public class Patient extends Person {
     private BloodType bloodType;
-    private String cin;
+    @Column(unique = true)
+    private String cin; //Cin should be unique
     private Insurance insurance;
-
-    public Patient() {}
-    public Patient(Insurance insurance) {
-        super();
-        this.bloodType = bloodType;
-        this.cin =cin;
-        this.insurance = insurance;
-    }
-    public BloodType getBloodType() {return bloodType;}
-    public void setBloodType(BloodType bloodType) {this.bloodType = bloodType;}
-    public String getCin() {return cin;}
-    public void setCin(String cin) {this.cin = cin;}
-    public Insurance getInsurance() {return insurance;}
-    public void setInsurance(Insurance insurance) {this.insurance = insurance;}
 
     @Override
     public String toString() {
