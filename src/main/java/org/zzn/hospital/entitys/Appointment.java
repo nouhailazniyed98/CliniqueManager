@@ -2,7 +2,7 @@ package org.zzn.hospital.entitys;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.zzn.hospital.Enums.Days;
+import org.zzn.hospital.enums.Days;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;

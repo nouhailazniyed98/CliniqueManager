@@ -2,7 +2,7 @@ package org.zzn.hospital.services;
 
 import org.springframework.stereotype.Service;
 import org.zzn.hospital.entitys.Personnel;
-import org.zzn.hospital.Repositories.PersonnelRepository;
+import org.zzn.hospital.repositories.PersonnelRepository;
 
 import java.util.List;
 

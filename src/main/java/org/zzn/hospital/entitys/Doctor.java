@@ -2,7 +2,7 @@ package org.zzn.hospital.entitys;
 
 import jakarta.persistence.Entity;
 import lombok.*;
-import org.zzn.hospital.Enums.Speciality;
+import org.zzn.hospital.enums.Speciality;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity

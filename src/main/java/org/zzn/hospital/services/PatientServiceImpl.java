@@ -1,9 +1,9 @@
 package org.zzn.hospital.services;
 
 import org.springframework.stereotype.Service;
-import org.zzn.hospital.Exceptions.PatientAlreadyExistExcepetion;
+import org.zzn.hospital.exceptions.PatientAlreadyExistExcepetion;
 import org.zzn.hospital.entitys.Patient;
-import org.zzn.hospital.Repositories.PatientRepository;
+import org.zzn.hospital.repositories.PatientRepository;
 
 import lombok.AllArgsConstructor;
 

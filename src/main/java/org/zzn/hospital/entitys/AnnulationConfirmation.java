@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
-import org.zzn.hospital.Enums.TypeAction;
+import org.zzn.hospital.enums.TypeAction;
 
 import java.time.LocalDate;
 

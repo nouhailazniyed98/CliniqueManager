@@ -3,7 +3,7 @@ package org.zzn.hospital.entitys;
 import jakarta.persistence.*;
 import lombok.*;
 
-import org.zzn.hospital.Enums.Gender;
+import org.zzn.hospital.enums.Gender;
 
 import java.time.LocalDate;
 

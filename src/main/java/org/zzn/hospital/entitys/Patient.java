@@ -5,7 +5,7 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import lombok.*;
 
-import org.zzn.hospital.Enums.BloodType;
+import org.zzn.hospital.enums.BloodType;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
