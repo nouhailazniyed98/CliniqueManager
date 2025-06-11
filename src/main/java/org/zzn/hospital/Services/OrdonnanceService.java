@@ -5,10 +5,11 @@ import org.zzn.hospital.Models.Ordonnance;
 import java.util.List;
 
 public interface OrdonnanceService {
-        Ordonnance save(Ordonnance ordonnance);
-        List<Ordonnance> getAll();
-        Ordonnance getById(Long id);
-        void delete(Long id);
+        Ordonnance addOrdonnance(Ordonnance ordonnance);
+        List<Ordonnance> getAllOrdonnance();
+        Ordonnance getByIdOrdonnance(Long id);
+        void deleteOrdonnance(Long id);
+        void updateOrdonnance(Ordonnance ordonnance);
 
 
 }

@@ -2,8 +2,8 @@ package org.zzn.hospital.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.zzn.hospital.Models.OrdonnanceMedecine;
-import org.zzn.hospital.Services.OrdonnanceMedecineService;
+import org.zzn.hospital.Models.Ordonnance;
+import org.zzn.hospital.Services.OrdonnanceService;
 
 import java.util.List;
 
@@ -11,25 +11,29 @@ import java.util.List;
 @RequestMapping("/ordonnances")
 public class OrdonnanceController {
     @Autowired
-    private OrdonnanceMedecineService ordonnanceMedecineService;
+    private OrdonnanceService  ordonnanceService;
 
     @GetMapping
-    public List<OrdonnanceMedecine> getAll() {
-        return ordonnanceMedecineService.getAll();
+    public List<Ordonnance> getAllOrdonnance() {
+        return ordonnanceService.getAllOrdonnance();
     }
 
     @GetMapping("/{id}")
-    public OrdonnanceMedecine getById(@PathVariable Long id) {
-        return ordonnanceMedecineService.getById(id);
+    public Ordonnance getByIdOrdonnance(@PathVariable Long id) {
+        return ordonnanceService.getByIdOrdonnance(id);
     }
 
     @PostMapping
-    public OrdonnanceMedecine create(@RequestBody OrdonnanceMedecine om) {
-        return ordonnanceMedecineService.save(om);
+    public Ordonnance createOrdonnance(@RequestBody Ordonnance om) {
+        return ordonnanceService.addOrdonnance(om);
+    }
+    @PutMapping
+    public void updateOrdonnance(@RequestBody Ordonnance om) {
+        ordonnanceService.updateOrdonnance(om);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        ordonnanceMedecineService.delete(id);
+    public void deleteOrdonnance(@PathVariable Long id) {
+        ordonnanceService.deleteOrdonnance(id);
     }
 }

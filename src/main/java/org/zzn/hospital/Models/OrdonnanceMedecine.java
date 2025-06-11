@@ -4,8 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.*;
 
 @Entity
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
 public class OrdonnanceMedecine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,34 +17,7 @@ public class OrdonnanceMedecine {
     private double quantity;
     private double dausage;
 
-    public OrdonnanceMedecine() {}
 
-    public OrdonnanceMedecine(Long idOrdonnanceMedecine, double quantity, double dausage) {
-        this.idOrdonnanceMedecine = idOrdonnanceMedecine;
-        this.quantity = quantity;
-        this.dausage = dausage;
-    }
-
-    public Long getIdOrdonnanceMedecine() {
-        return idOrdonnanceMedecine;
-    }
-
-    public void setIdOrdonnanceMedecine(Long idOrdonnanceMedecine) {
-        this.idOrdonnanceMedecine = idOrdonnanceMedecine;
-    }
-
-    public double getQuantity() {
-        return quantity;
-    }
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
-    }
-    public double getDausage() {
-        return dausage;
-    }
-    public void setDausage(double dausage) {
-        this.dausage = dausage;
-    }
 
     @Override
     public String toString() {

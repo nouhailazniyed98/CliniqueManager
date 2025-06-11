@@ -1,11 +1,13 @@
 package org.zzn.hospital.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.*;
+import  org.zzn.hospital.Repositories.ConsultationRepository;
 
 @Entity
+@AllArgsConstructor @NoArgsConstructor
+@Setter @Getter
+@Builder
 public class Consultation {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,32 +15,7 @@ public class Consultation {
     private String diagnostic;
     private String remarque;
 
-    public Consultation() {}
-    public Consultation(Long idConsultation, String diagnostic, String remarque) {
-        this.idConsultation = idConsultation;
-        this.diagnostic = diagnostic;
-        this.remarque = remarque;
 
-    }
-    public Long getIdConsultation() {
-        return idConsultation;
-    }
-    public void setIdConsultation(Long idConsultation) {
-        this.idConsultation = idConsultation;
-    }
-    public String getDiagnostic() {
-        return diagnostic;
-    }
-    public void setDiagnostic(String diagnostic) {
-        this.diagnostic = diagnostic;
-
-    }
-    public String getRemarque() {
-        return remarque;
-    }
-    public void setRemarque(String remarque) {
-        this.remarque = remarque;
-    }
     @Override
     public String toString() {
         return "Consultation{" +

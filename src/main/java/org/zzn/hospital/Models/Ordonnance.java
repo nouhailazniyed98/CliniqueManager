@@ -1,10 +1,14 @@
 package org.zzn.hospital.Models;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
 public class Ordonnance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,31 +18,9 @@ public class Ordonnance {
     private Medecine medecine;
     private LocalDate date;
 
-    public Ordonnance() {}
-    public Ordonnance(Medecine medecine, LocalDate date) {
-        this .idOrdonnance=idOrdonnance;
-        this.medecine = medecine;
-        this.date = date;
-    }
 
-    public Long getIdOrdonnance() {
-        return idOrdonnance;
-    }
-    public void setIdOrdonnance(Long idOrdonnance) {
-        this.idOrdonnance = idOrdonnance;
-    }
-    public Medecine getMedecine() {
-        return medecine;
-    }
-    public void setMedecine(Medecine medecine) {
-        this.medecine = medecine;
-    }
-    public LocalDate getDate() {
-        return date;
-    }
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
+
+
     @Override
     public String toString() {
         return "Ordonnance{" +

@@ -15,22 +15,31 @@ public class ConsultationController {
     private ConsultationService consultationService;
 
     @GetMapping
-    public List<Consultation> getAll() {
-        return consultationService.getAll();
+    public List<Consultation> getAllConsultations() {
+
+        return consultationService.getAllConsultations();
     }
 
     @GetMapping("/{id}")
-    public Consultation getById(@PathVariable Long id) {
-        return consultationService.getById(id);
+    public Consultation getByIdConsultation(@PathVariable Long id) {
+        return consultationService.getByIdConsultation(id);
     }
 
+
     @PostMapping
-    public Consultation create(@RequestBody Consultation ac) {
-        return consultationService.save(ac);
+    public Consultation createConsultation(@RequestBody Consultation ac) {
+        return consultationService.addConsultation(ac);
+    }
+
+    @PutMapping
+    public void updateConsultation(@RequestBody Consultation consultation) {
+        consultationService.updateConsultation(consultation);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        consultationService.delete(id);
+    public void deleteConsultation(@PathVariable Long id) {
+        consultationService.deleteConsultation(id);
     }
+
+
 }

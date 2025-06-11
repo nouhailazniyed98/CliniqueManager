@@ -1,28 +1,53 @@
 package org.zzn.hospital.Services;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.zzn.hospital.Exceptions.OrdonnanceMedecinNotFoundException;
+import org.zzn.hospital.Exceptions.OrdonnanceNotFoundException;
 import org.zzn.hospital.Models.OrdonnanceMedecine;
+import org.zzn.hospital.Repositories.OrdonnanceMedecineRepository;
 
 import java.util.List;
 @Service
+@AllArgsConstructor
 public class OrdonnanceMedecineServiceImpl implements  OrdonnanceMedecineService {
+    private final OrdonnanceMedecineRepository ordonnanceMedecineRepository;
     @Override
-    public OrdonnanceMedecine save(OrdonnanceMedecine ordonnanceMedecine) {
-        return null;
+    public OrdonnanceMedecine addOrdonnanceMedecine(OrdonnanceMedecine ordonnanceMedecine) {
+     if(ordonnanceMedecine.getQuantity() <= 0){
+         throw new IllegalArgumentException("Quantity must be greater than 0");
+
+     }
+     if (ordonnanceMedecine.getDausage() <= 0){
+         throw new IllegalArgumentException("Dausage must be greater than 0");
+
+     }
+     return ordonnanceMedecineRepository.save(ordonnanceMedecine);
     }
 
     @Override
-    public OrdonnanceMedecine getById(Long id) {
-        return null;
+    public List<OrdonnanceMedecine> getAllOrdonnanceMedecine() {
+        return ordonnanceMedecineRepository.findAll();
     }
 
     @Override
-    public List<OrdonnanceMedecine> getAll() {
-        return List.of();
+    public OrdonnanceMedecine getByIdOrdonnanceMedecine(Long id) {
+        return ordonnanceMedecineRepository.findById(id)
+                .orElseThrow(() -> new OrdonnanceMedecinNotFoundException("Ordonnance not found "));
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteOrdonnanceMedecine(Long id) {
+     if (! ordonnanceMedecineRepository.existsById(id)){
+         throw new OrdonnanceNotFoundException("Ordonnance not found");
+     }
+     ordonnanceMedecineRepository.deleteById(id);
+    }
 
+    @Override
+    public void updateOrdonnanceMedecine(OrdonnanceMedecine ordonnanceMedecine) {
+       if (ordonnanceMedecine.getIdOrdonnanceMedecine() == null ){
+
+       }
     }
 }

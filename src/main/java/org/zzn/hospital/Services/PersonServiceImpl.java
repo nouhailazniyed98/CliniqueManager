@@ -3,7 +3,6 @@ package org.zzn.hospital.Services;
 import org.springframework.stereotype.Service;
 import org.zzn.hospital.Models.Person;
 import org.zzn.hospital.Repositories.PersonRepository;
-
 import java.util.List;
 
 @Service

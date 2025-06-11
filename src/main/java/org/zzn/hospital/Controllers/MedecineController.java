@@ -14,22 +14,27 @@ public class MedecineController {
     private MedecineService medecineService;
 
     @GetMapping
-    public List<Medecine> getAll() {
-        return medecineService.getAll();
+    public List<Medecine> getAllMedecine() {
+        return medecineService.getAllMedecine();
     }
 
     @GetMapping("/{id}")
-    public Medecine getById(@PathVariable Long id) {
-        return medecineService.getById(id);
+    public Medecine getByIdMedecine(@PathVariable Long id) {
+        return medecineService.getByIdMedecine(id);
     }
 
     @PostMapping
-    public Medecine create(@RequestBody Medecine medecine) {
-        return medecineService.save(medecine);
+    public Medecine createMedecine(@RequestBody Medecine me) {
+        return medecineService.addMedecine(me);
+    }
+
+    @PutMapping
+    public void  updateMedecine(@RequestBody Medecine me) {
+        medecineService.updateMedecine(me);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        medecineService.delete(id);
+    public void deleteMedecine(@PathVariable Long id) {
+        medecineService.deleteMedecine(id);
     }
 }
