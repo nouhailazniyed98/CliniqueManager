@@ -1,10 +1,9 @@
 package org.zzn.hospital.Controllers;
 
 import org.springframework.web.bind.annotation.*;
-import org.zzn.hospital.Models.Patient;
-import org.zzn.hospital.Models.Personnel;
-import org.zzn.hospital.Services.PatientService;
-import org.zzn.hospital.Services.PersonnelService;
+import org.zzn.hospital.entitys.Personnel;
+import org.zzn.hospital.services.PatientService;
+import org.zzn.hospital.services.PersonnelService;
 
 import java.util.List;
 

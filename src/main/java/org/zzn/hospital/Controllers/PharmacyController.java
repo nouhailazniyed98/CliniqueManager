@@ -2,8 +2,8 @@ package org.zzn.hospital.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.zzn.hospital.Models.Pharmacy;
-import org.zzn.hospital.Services.PharmacyService;
+import org.zzn.hospital.entitys.Pharmacy;
+import org.zzn.hospital.services.PharmacyService;
 
 import java.util.List;
 

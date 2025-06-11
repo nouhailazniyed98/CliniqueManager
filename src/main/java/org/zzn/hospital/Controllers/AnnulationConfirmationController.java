@@ -2,8 +2,8 @@ package org.zzn.hospital.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.zzn.hospital.Models.AnnulationConfirmation;
-import org.zzn.hospital.Services.AnnulationConfirmationService;
+import org.zzn.hospital.entitys.AnnulationConfirmation;
+import org.zzn.hospital.services.AnnulationConfirmationService;
 
 import java.util.List;
 

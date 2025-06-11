@@ -3,8 +3,8 @@ package org.zzn.hospital.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.zzn.hospital.Models.Outils;
-import org.zzn.hospital.Services.OutilsService;
+import org.zzn.hospital.entitys.Outils;
+import org.zzn.hospital.services.OutilsService;
 
 import java.util.List;
 
