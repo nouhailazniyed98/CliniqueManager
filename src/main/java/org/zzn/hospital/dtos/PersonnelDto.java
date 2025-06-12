@@ -9,8 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class InsuranceDTO {
-    private String companyName;
-    private String typeCoverage;
-    private String iphoneNumber;
+public class PersonnelDto {
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private String cin;
+    private String post;
+    private String service;
 }

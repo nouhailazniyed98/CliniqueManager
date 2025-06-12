@@ -1,6 +1,7 @@
 package org.zzn.hospital.services;
 
 import org.springframework.stereotype.Service;
+import org.zzn.hospital.dtos.PatientResponseDto;
 import org.zzn.hospital.exceptions.PatientAlreadyExistExcepetion;
 import org.zzn.hospital.entitys.Patient;
 import org.zzn.hospital.repositories.PatientRepository;
@@ -41,8 +42,6 @@ public class PatientServiceImpl implements PatientService {
         .build());
     }
 
-    @Override
-    public void deletePatient(int id) {
 
-    }
+
 }

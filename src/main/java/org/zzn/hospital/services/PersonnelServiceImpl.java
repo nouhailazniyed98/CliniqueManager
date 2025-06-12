@@ -1,6 +1,7 @@
 package org.zzn.hospital.services;
 
 import org.springframework.stereotype.Service;
+import org.zzn.hospital.dtos.PersonnelDto;
 import org.zzn.hospital.entitys.Personnel;
 import org.zzn.hospital.repositories.PersonnelRepository;
 
@@ -14,30 +15,34 @@ public class PersonnelServiceImpl implements PersonnelService {
         this.personnelRepository = personnelRepository;
     }
 
-    @Override
-    public Personnel addPersonnel(Personnel personnel) {
-
-        return personnel;
-    }
 
     @Override
-    public void updatePersonnel(Personnel personnel) {
-
-    }
-
-    @Override
-    public void deletePersonnel(long id) {
-
-    }
-
-    @Override
-    public Personnel getPersonnelById(long id) {
+    public PersonnelDto create(PersonnelDto object) {
         return null;
     }
 
     @Override
-    public List<Personnel> getAllPersonnels() {
-        return List.of();
+    public PersonnelDto update(PersonnelDto object) {
+        return null;
     }
 
+    @Override
+    public PersonnelDto update(Long aLong, PersonnelDto dto) {
+        return null;
+    }
+
+    @Override
+    public PersonnelDto delete(Long aLong) {
+        return null;
+    }
+
+    @Override
+    public PersonnelDto findById(Long aLong) {
+        return null;
+    }
+
+    @Override
+    public List<PersonnelDto> findAll() {
+        return List.of();
+    }
 }
