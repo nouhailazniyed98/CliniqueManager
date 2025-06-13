@@ -1,7 +1,7 @@
 package org.zzn.hospital.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import org.zzn.hospital.dtos.PatientResponseDto;
+import org.zzn.hospital.dtos.PatientDto;
 import org.zzn.hospital.entitys.Patient;
 import org.zzn.hospital.services.PatientService;
 
@@ -14,7 +14,7 @@ public class PatientController {
         this.patientService = patientService;
     }
     @PostMapping
-    public PatientResponseDto addPatient (@RequestBody Patient patient) {
+    public PatientDto addPatient (@RequestBody Patient patient) {
         return patientService.create(patient);
     }
 
@@ -24,7 +24,7 @@ public class PatientController {
     }
 
     @GetMapping("/{id}")
-    public PatientResponseDto getPatientById(@PathVariable PatientResponseDto id) {
+    public PatientDto getPatientById(@PathVariable PatientDto id) {
         return patientService.update(id);
     }
 

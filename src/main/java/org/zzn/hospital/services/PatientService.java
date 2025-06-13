@@ -2,9 +2,8 @@ package org.zzn.hospital.services;
 
 
 import org.zzn.hospital.dtos.PatientDto;
-import org.zzn.hospital.dtos.PatientResponseDto;
 
-public interface PatientService extends CrudService<PatientResponseDto, Long> {
+public interface PatientService extends CrudService<PatientDto, Long> {
 
-    PatientResponseDto create(PatientDto patientDto);
+    PatientDto create(PatientDto patientDto);
 }

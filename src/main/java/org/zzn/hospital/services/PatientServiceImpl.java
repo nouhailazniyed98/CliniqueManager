@@ -2,7 +2,6 @@ package org.zzn.hospital.services;
 
 import org.springframework.stereotype.Service;
 import org.zzn.hospital.dtos.PatientDto;
-import org.zzn.hospital.dtos.PatientResponseDto;
 import org.zzn.hospital.entitys.Patient;
 import org.zzn.hospital.exceptions.PatientAlreadyExistExcepetion;
 import org.zzn.hospital.mappers.PatientMapper;
@@ -19,7 +18,7 @@ public class PatientServiceImpl implements PatientService {
     private final PatientMapper patientMapper;
 
     @Override
-    public PatientResponseDto create(PatientDto patientDto) {
+    public PatientDto create(PatientDto patientDto) {
         if (patientRepository.findPatientByCin(patientDto.getCin()).isPresent()) {
             throw new PatientAlreadyExistExcepetion(patientDto.getCin());
         }
@@ -28,33 +27,34 @@ public class PatientServiceImpl implements PatientService {
         return patientMapper.toDto(saved);
     }
 
+
     @Override
-    public PatientResponseDto create(Patient object) {
+    public PatientDto create(Patient object) {
         return null;
     }
 
     @Override
-    public PatientResponseDto update(PatientResponseDto object) {
+    public PatientDto update(PatientDto object) {
         return null;
     }
 
     @Override
-    public PatientResponseDto update(Long aLong, PatientResponseDto dto) {
+    public PatientDto update(Long aLong, PatientDto dto) {
         return null;
     }
 
     @Override
-    public PatientResponseDto delete(Long aLong) {
+    public PatientDto delete(Long aLong) {
         return null;
     }
 
     @Override
-    public PatientResponseDto findById(Long aLong) {
+    public PatientDto findById(Long aLong) {
         return null;
     }
 
     @Override
-    public List<PatientResponseDto> findAll() {
+    public List<PatientDto> findAll() {
         return List.of();
     }
 }

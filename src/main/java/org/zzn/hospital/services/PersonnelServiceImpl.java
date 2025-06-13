@@ -1,8 +1,8 @@
 package org.zzn.hospital.services;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.zzn.hospital.dtos.PersonnelDto;
-import org.zzn.hospital.dtos.PersonnelResponseDto;
 import org.zzn.hospital.entitys.Patient;
 import org.zzn.hospital.entitys.Personnel;
 import org.zzn.hospital.mappers.PersonnelMapper;
@@ -10,51 +10,48 @@ import org.zzn.hospital.repositories.PersonnelRepository;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 public class PersonnelServiceImpl implements PersonnelService {
     private final PersonnelRepository personnelRepository;
     private final PersonnelMapper personnelMapper;
 
-    public PersonnelServiceImpl(PersonnelRepository personnelRepository, PersonnelMapper personnelMapper) {
-        this.personnelRepository = personnelRepository;
-        this.personnelMapper = personnelMapper;
-    }
+
 
     @Override
-    public PersonnelResponseDto create(PersonnelDto personnelDto) {
+    public PersonnelDto create(PersonnelDto personnelDto) {
         Personnel personnel = personnelMapper.fromDto(personnelDto);
         Personnel saved = personnelRepository.save(personnel);
         return personnelMapper.toDto(saved);
     }
 
-
     @Override
-    public PersonnelResponseDto create(Patient object) {
+    public PersonnelDto create(Patient object) {
         return null;
     }
 
     @Override
-    public PersonnelResponseDto update(PersonnelResponseDto object) {
+    public PersonnelDto update(PersonnelDto object) {
         return null;
     }
 
     @Override
-    public PersonnelResponseDto update(Long aLong, PersonnelResponseDto dto) {
+    public PersonnelDto update(Long aLong, PersonnelDto dto) {
         return null;
     }
 
     @Override
-    public PersonnelResponseDto delete(Long aLong) {
+    public PersonnelDto delete(Long aLong) {
         return null;
     }
 
     @Override
-    public PersonnelResponseDto findById(Long aLong) {
+    public PersonnelDto findById(Long aLong) {
         return null;
     }
 
     @Override
-    public List<PersonnelResponseDto> findAll() {
+    public List<PersonnelDto> findAll() {
         return List.of();
     }
 }

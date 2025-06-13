@@ -1,8 +1,8 @@
 package org.zzn.hospital.services;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.zzn.hospital.dtos.AppointmentDto;
-import org.zzn.hospital.dtos.AppointmentResponseDto;
 import org.zzn.hospital.entitys.Appointment;
 import org.zzn.hospital.entitys.Doctor;
 import org.zzn.hospital.entitys.Patient;
@@ -13,6 +13,7 @@ import org.zzn.hospital.repositories.PatientRepository;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
 
@@ -21,15 +22,9 @@ public class AppointmentServiceImpl implements AppointmentService {
     private final DoctorRepository doctorRepository;
     private final AppointmentMapper appointmentMapper;
 
-    public AppointmentServiceImpl(AppointmentRepository appointmentRepository, PatientRepository patientRepository, DoctorRepository doctorRepository, AppointmentMapper appointmentMapper) {
-        this.appointmentRepository = appointmentRepository;
-        this.patientRepository = patientRepository;
-        this.doctorRepository = doctorRepository;
-        this.appointmentMapper = appointmentMapper;
-    }
 
     @Override
-    public AppointmentResponseDto create(AppointmentDto appointmentDto) {
+    public AppointmentDto create(AppointmentDto appointmentDto) {
         Patient patient = patientRepository.findById(appointmentDto.getPatientId())
                 .orElseThrow(() -> new RuntimeException("Patient not found"));
         Doctor doctor = doctorRepository.findById(appointmentDto.getDoctorId())
@@ -43,32 +38,32 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public AppointmentResponseDto create(Patient object) {
+    public AppointmentDto create(Patient object) {
         return null;
     }
 
     @Override
-    public AppointmentResponseDto update(AppointmentResponseDto object) {
+    public AppointmentDto update(AppointmentDto object) {
         return null;
     }
 
     @Override
-    public AppointmentResponseDto update(Long aLong, AppointmentResponseDto dto) {
+    public AppointmentDto update(Long aLong, AppointmentDto dto) {
         return null;
     }
 
     @Override
-    public AppointmentResponseDto delete(Long aLong) {
+    public AppointmentDto delete(Long aLong) {
         return null;
     }
 
     @Override
-    public AppointmentResponseDto findById(Long aLong) {
+    public AppointmentDto findById(Long aLong) {
         return null;
     }
 
     @Override
-    public List<AppointmentResponseDto> findAll() {
+    public List<AppointmentDto> findAll() {
         return List.of();
     }
 }

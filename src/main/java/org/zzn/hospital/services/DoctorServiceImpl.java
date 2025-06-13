@@ -1,62 +1,57 @@
 package org.zzn.hospital.services;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.zzn.hospital.dtos.DoctorDto;
-import org.zzn.hospital.dtos.DoctorResponseDto;
 import org.zzn.hospital.entitys.Doctor;
 import org.zzn.hospital.entitys.Patient;
-import org.zzn.hospital.exceptions.PatientAlreadyExistExcepetion;
 import org.zzn.hospital.mappers.DoctorMapper;
 import org.zzn.hospital.repositories.DoctorRepository;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 public class DoctorServiceImpl implements DoctorService {
     private final DoctorRepository doctorRepository;
     private final DoctorMapper doctorMapper;
 
-    public DoctorServiceImpl(DoctorRepository doctorRepository, DoctorMapper doctorMapper) {
-        this.doctorRepository = doctorRepository;
-        this.doctorMapper = doctorMapper;
-    }
-
-
     @Override
-    public DoctorResponseDto create(DoctorDto doctorDto) {
+    public DoctorDto create(DoctorDto doctorDto) {
 
         Doctor doctor = doctorMapper.fromDto(doctorDto);
         Doctor saved = doctorRepository.save(doctor);
         return doctorMapper.toDto(saved);
     }
 
+
     @Override
-    public DoctorResponseDto create(Patient object) {
+    public DoctorDto create(Patient object) {
         return null;
     }
 
     @Override
-    public DoctorResponseDto update(DoctorResponseDto object) {
+    public DoctorDto update(DoctorDto object) {
         return null;
     }
 
     @Override
-    public DoctorResponseDto update(Long aLong, DoctorResponseDto dto) {
+    public DoctorDto update(Long aLong, DoctorDto dto) {
         return null;
     }
 
     @Override
-    public DoctorResponseDto delete(Long aLong) {
+    public DoctorDto delete(Long aLong) {
         return null;
     }
 
     @Override
-    public DoctorResponseDto findById(Long aLong) {
+    public DoctorDto findById(Long aLong) {
         return null;
     }
 
     @Override
-    public List<DoctorResponseDto> findAll() {
+    public List<DoctorDto> findAll() {
         return List.of();
     }
 }

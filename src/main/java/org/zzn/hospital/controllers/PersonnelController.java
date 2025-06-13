@@ -4,9 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.zzn.hospital.dtos.PersonnelDto;
-import org.zzn.hospital.dtos.PersonnelResponseDto;
-import org.zzn.hospital.entitys.Personnel;
-import org.zzn.hospital.services.PatientService;
 import org.zzn.hospital.services.PersonnelService;
 
 import java.util.List;
@@ -22,19 +19,19 @@ public class PersonnelController {
 
 
     @PostMapping
-    public ResponseEntity<PersonnelResponseDto> createPersonnel(@RequestBody PersonnelDto personnelDto) {
-        PersonnelResponseDto created = personnelService.create(personnelDto);
+    public ResponseEntity<PersonnelDto> createPersonnel(@RequestBody PersonnelDto personnelDto) {
+        PersonnelDto created = personnelService.create(personnelDto);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PersonnelResponseDto> getById(@PathVariable Long id) {
-        PersonnelResponseDto personnel = personnelService.findById(id);
+    public ResponseEntity<PersonnelDto> getById(@PathVariable Long id) {
+        PersonnelDto personnel = personnelService.findById(id);
         return ResponseEntity.ok(personnel);
     }
 
     @GetMapping
-    public ResponseEntity<List<PersonnelResponseDto>> getAll() {
+    public ResponseEntity<List<PersonnelDto>> getAll() {
         return ResponseEntity.ok(personnelService.findAll());
     }
 }

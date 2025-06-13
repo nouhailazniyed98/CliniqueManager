@@ -4,8 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.zzn.hospital.dtos.DoctorDto;
-import org.zzn.hospital.dtos.DoctorResponseDto;
-import org.zzn.hospital.entitys.Doctor;
 import org.zzn.hospital.services.DoctorService;
 
 import java.util.List;
@@ -16,19 +14,19 @@ public class DoctorController {
     private DoctorService doctorService;
 
     @PostMapping
-    public ResponseEntity<DoctorResponseDto> createDoctor(@RequestBody DoctorDto doctorDto) {
-        DoctorResponseDto created = doctorService.create(doctorDto);
+    public ResponseEntity<DoctorDto> createDoctor(@RequestBody DoctorDto doctorDto) {
+        DoctorDto created = doctorService.create(doctorDto);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DoctorResponseDto> getById(@PathVariable Long id) {
-        DoctorResponseDto doctor = doctorService.findById(id);
+    public ResponseEntity<DoctorDto> getById(@PathVariable Long id) {
+        DoctorDto doctor = doctorService.findById(id);
         return ResponseEntity.ok(doctor);
     }
 
     @GetMapping
-    public ResponseEntity<List<DoctorResponseDto>> getAll() {
+    public ResponseEntity<List<DoctorDto>> getAll() {
         return ResponseEntity.ok(doctorService.findAll());
     }
 }
