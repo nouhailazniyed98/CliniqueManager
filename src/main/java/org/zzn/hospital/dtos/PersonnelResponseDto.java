@@ -4,21 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.zzn.hospital.enums.Gender;
-
-import java.time.LocalDate;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class CreatePersonnelDto {
+public class PersonnelResponseDto {
+    private Long id;
     private String firstName;
     private String lastName;
-    private Gender gender;
-    private LocalDate birthday;
-    private String address;
-    private String phoneNumber;
     private String post;
     private String service;
 }

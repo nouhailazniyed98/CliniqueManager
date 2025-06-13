@@ -8,12 +8,11 @@ import org.zzn.hospital.enums.BloodType;
 import org.zzn.hospital.enums.Gender;
 
 import java.time.LocalDate;
-
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class CreatePatientDto {
+@NoArgsConstructor
+@Builder
+public class PatientDto {
     private String firstName;
     private String lastName;
     private Gender gender;

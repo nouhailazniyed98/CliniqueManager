@@ -1,6 +1,10 @@
 package org.zzn.hospital.controllers;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.zzn.hospital.dtos.PersonnelDto;
+import org.zzn.hospital.dtos.PersonnelResponseDto;
 import org.zzn.hospital.entitys.Personnel;
 import org.zzn.hospital.services.PatientService;
 import org.zzn.hospital.services.PersonnelService;
@@ -10,31 +14,27 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/personnels")
 public class PersonnelController {
-    private final PatientService patientService;
     private final PersonnelService personnelService;
 
-    public PersonnelController(PatientService patientService, PersonnelService personnelService) {
-        this.patientService = patientService;
+    public PersonnelController(PersonnelService personnelService) {
         this.personnelService = personnelService;
     }
-    @PostMapping
-    public Personnel addPersonnel (@RequestBody Personnel personnel) {
-        return personnelService.addPersonnel(personnel);
-    }
 
-    @GetMapping
-    public List<Personnel> getAllPersonnel() {
-        return personnelService.getAllPersonnels();
+
+    @PostMapping
+    public ResponseEntity<PersonnelResponseDto> createPersonnel(@RequestBody PersonnelDto personnelDto) {
+        PersonnelResponseDto created = personnelService.create(personnelDto);
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public Personnel getPersonnelById(@PathVariable Long id) {
-        return personnelService.getPersonnelById(id);
+    public ResponseEntity<PersonnelResponseDto> getById(@PathVariable Long id) {
+        PersonnelResponseDto personnel = personnelService.findById(id);
+        return ResponseEntity.ok(personnel);
     }
 
-    @DeleteMapping("/{id}")
-    public void deletePatient(@PathVariable int id) {
-        patientService.deletePatient(id);
+    @GetMapping
+    public ResponseEntity<List<PersonnelResponseDto>> getAll() {
+        return ResponseEntity.ok(personnelService.findAll());
     }
-
 }

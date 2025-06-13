@@ -1,10 +1,12 @@
 package org.zzn.hospital.services;
 
+import org.zzn.hospital.entitys.Patient;
+
 import java.util.List;
 
 public interface CrudService <D,ID>{
 
-    public D create(D object);
+    public D create(Patient object);
     public D update(D object);
 
     D update(ID id, D dto);

@@ -1,6 +1,10 @@
 package org.zzn.hospital.controllers;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.zzn.hospital.dtos.DoctorDto;
+import org.zzn.hospital.dtos.DoctorResponseDto;
 import org.zzn.hospital.entitys.Doctor;
 import org.zzn.hospital.services.DoctorService;
 
@@ -11,26 +15,20 @@ import java.util.List;
 public class DoctorController {
     private DoctorService doctorService;
 
-    public DoctorController(DoctorService doctorServiceService) {
-        this.doctorService = doctorService;
-    }
     @PostMapping
-    public Doctor addDoctor (@RequestBody Doctor doctor) {
-        return doctorService.addDoctor(doctor);
-    }
-
-    @GetMapping
-    public List<Doctor> getAllDoctors() {
-        return doctorService.getAllDoctor();
+    public ResponseEntity<DoctorResponseDto> createDoctor(@RequestBody DoctorDto doctorDto) {
+        DoctorResponseDto created = doctorService.create(doctorDto);
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public Doctor getDoctorById(@PathVariable Long id) {
-        return doctorService.getDoctorById(id);
+    public ResponseEntity<DoctorResponseDto> getById(@PathVariable Long id) {
+        DoctorResponseDto doctor = doctorService.findById(id);
+        return ResponseEntity.ok(doctor);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteDoctor(@PathVariable int id) {
-        doctorService.deleteDoctor(id);
+    @GetMapping
+    public ResponseEntity<List<DoctorResponseDto>> getAll() {
+        return ResponseEntity.ok(doctorService.findAll());
     }
 }

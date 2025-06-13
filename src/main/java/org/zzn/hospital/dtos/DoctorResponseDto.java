@@ -4,22 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.zzn.hospital.enums.Gender;
-
-import java.time.LocalDate;
+import org.zzn.hospital.enums.Speciality;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PersonDTO {
+public class DoctorResponseDto {
     private Long id;
     private String firstName;
     private String lastName;
-    private Gender gender;
-    private LocalDate birthday;
-    private String address;
-    private String phoneNumber;
-    private String cin;
-
+    private Speciality speciality;
 }
