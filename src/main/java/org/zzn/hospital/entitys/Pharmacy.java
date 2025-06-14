@@ -10,6 +10,7 @@ import lombok.*;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @Builder
+@Data
 public class Pharmacy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,15 +20,7 @@ public class Pharmacy {
     private String emailPharmacy;
 
 
-    @Override
-    public String toString() {
-        return "Pharmacy{" +
-                "idPharmacy=" + idPharmacy +
-                ", namePharmacy='" + namePharmacy + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", emailPharmacy='" + emailPharmacy + '\'' +
-                '}';
-    }
+
 
 
 }

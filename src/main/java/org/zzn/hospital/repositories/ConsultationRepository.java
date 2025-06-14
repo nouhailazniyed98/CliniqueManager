@@ -5,7 +5,6 @@ import org.zzn.hospital.entitys.Consultation;
 
 
 public interface ConsultationRepository extends JpaRepository<Consultation, Long> {
-    boolean existsByDiagnostic(String diagnostic);
 
 
 }

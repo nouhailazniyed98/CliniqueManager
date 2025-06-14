@@ -10,6 +10,7 @@ import lombok.*;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @Builder
+@Data
 public class Outils {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,15 +20,7 @@ public class Outils {
     private boolean availibility;
 
 
-    @Override
-    public String toString() {
-        return "Outils{" +
-                "idOutils=" + idOutils +
-                ", nameOutils='" + nameOutils + '\'' +
-                ", description='" + description + '\'' +
-                ", availibility=" + availibility +
-                '}';
-    }
+
 
 
 

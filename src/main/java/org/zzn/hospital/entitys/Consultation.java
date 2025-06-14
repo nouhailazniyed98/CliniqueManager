@@ -2,11 +2,12 @@ package org.zzn.hospital.entitys;
 
 import jakarta.persistence.*;
 import lombok.*;
-import  org.zzn.hospital.Repositories.ConsultationRepository;
+import  org.zzn.hospital.repositories.ConsultationRepository;
 
 @Entity
-@AllArgsConstructor @NoArgsConstructor
-@Setter @Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Builder
 public class Consultation {
      @Id
@@ -16,14 +17,6 @@ public class Consultation {
     private String remarque;
 
 
-    @Override
-    public String toString() {
-        return "Consultation{" +
-                "idConsultation=" + idConsultation +
-                ", diagnostic='" + diagnostic + '\'' +
-                ", remarque='" + remarque + '\'' +
-                '}';
-    }
 
 
 }

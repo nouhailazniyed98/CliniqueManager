@@ -2,51 +2,50 @@ package org.zzn.hospital.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.zzn.hospital.dtos.OrdonnanceMedecineDto;
 import org.zzn.hospital.exceptions.OrdonnanceMedecinNotFoundException;
 import org.zzn.hospital.exceptions.OrdonnanceNotFoundException;
 import org.zzn.hospital.entitys.OrdonnanceMedecine;
+import org.zzn.hospital.mappers.OrdonnanceMedecineMapper;
 import org.zzn.hospital.repositories.OrdonnanceMedecineRepository;
 import java.util.List;
 @Service
 @AllArgsConstructor
 public class OrdonnanceMedecineServiceImpl implements  OrdonnanceMedecineService {
-    private final OrdonnanceMedecineRepository ordonnanceMedecineRepository;
+    private final OrdonnanceMedecineRepository repository;
+    private final OrdonnanceMedecineMapper mapper;
+
     @Override
-    public OrdonnanceMedecine addOrdonnanceMedecine(OrdonnanceMedecine ordonnanceMedecine) {
-     if(ordonnanceMedecine.getQuantity() <= 0){
-         throw new IllegalArgumentException("Quantity must be greater than 0");
-
-     }
-     if (ordonnanceMedecine.getDausage() <= 0){
-         throw new IllegalArgumentException("Dausage must be greater than 0");
-
-     }
-     return ordonnanceMedecineRepository.save(ordonnanceMedecine);
+    public OrdonnanceMedecineDto create(OrdonnanceMedecineDto dto) {
+        return mapper.toDto(repository.save(mapper.fromDto(dto)));
     }
 
     @Override
-    public List<OrdonnanceMedecine> getAllOrdonnanceMedecine() {
-        return ordonnanceMedecineRepository.findAll();
+    public OrdonnanceMedecineDto update(OrdonnanceMedecineDto dto) {
+        return update(dto.getIdOrdonnanceMedecine(), dto);
     }
 
     @Override
-    public OrdonnanceMedecine getByIdOrdonnanceMedecine(Long id) {
-        return ordonnanceMedecineRepository.findById(id)
-                .orElseThrow(() -> new OrdonnanceMedecinNotFoundException("Ordonnance not found "));
+    public OrdonnanceMedecineDto update(Long id, OrdonnanceMedecineDto dto) {
+        OrdonnanceMedecine entity = repository.findById(id).orElseThrow();
+        entity.setQuantity(dto.getQuantity());
+        entity.setDausage(dto.getDausage());
+        return mapper.toDto(repository.save(entity));    }
+
+    @Override
+    public OrdonnanceMedecineDto delete(Long id) {
+        OrdonnanceMedecine entity = repository.findById(id).orElseThrow();
+        repository.delete(entity);
+        return mapper.toDto(entity);    }
+
+    @Override
+    public OrdonnanceMedecineDto findById(Long id) {
+        return repository.findById(id).map(mapper::toDto).orElseThrow();
+
     }
 
     @Override
-    public void deleteOrdonnanceMedecine(Long id) {
-     if (! ordonnanceMedecineRepository.existsById(id)){
-         throw new OrdonnanceNotFoundException("Ordonnance not found");
-     }
-     ordonnanceMedecineRepository.deleteById(id);
-    }
-
-    @Override
-    public void updateOrdonnanceMedecine(OrdonnanceMedecine ordonnanceMedecine) {
-       if (ordonnanceMedecine.getIdOrdonnanceMedecine() == null ){
-
-       }
+    public List<OrdonnanceMedecineDto> findAll() {
+        return repository.findAll().stream().map(mapper::toDto).toList();
     }
 }

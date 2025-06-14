@@ -2,8 +2,12 @@ package org.zzn.hospital.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.zzn.hospital.dtos.OrdonnanceDto;
+import org.zzn.hospital.entitys.Medecine;
 import org.zzn.hospital.exceptions.OrdonnanceNotFoundException;
 import org.zzn.hospital.entitys.Ordonnance;
+import org.zzn.hospital.mappers.OrdonnanceMapper;
+import org.zzn.hospital.repositories.MedecineRepository;
 import org.zzn.hospital.repositories.OrdonnanceRepository;
 import java.util.List;
 
@@ -11,50 +15,54 @@ import java.util.List;
 @AllArgsConstructor
 public class OrdonnanceServiceImpl implements OrdonnanceService {
      private   final  OrdonnanceRepository ordonnanceRepository;
+     private final MedecineRepository medecineRepository;
+     private final OrdonnanceMapper ordonnanceMapper;
 
     @Override
-    public Ordonnance addOrdonnance(Ordonnance ordonnance) {
-        if (ordonnance.getDate() != null && ordonnance.getMedecine() != null &&
-                ordonnanceRepository.existsByDateAndMedecine_IdMedecine(
-                        ordonnance.getDate(), ordonnance.getMedecine().getIdMedecine())) {
-            throw new RuntimeException("Ordonnance for this medecine and date already exists");
-        }
-
-        return ordonnanceRepository.save(ordonnance);
+    public OrdonnanceDto create(OrdonnanceDto dto) {
+        Medecine medecine = medecineRepository.findById(dto.getMedecineId())
+                .orElseThrow(() -> new RuntimeException("Medecine not found"));
+        Ordonnance ordonnance = ordonnanceMapper.fromDto(dto);
+        ordonnance.setMedecine(medecine);
+        Ordonnance saved = ordonnanceRepository.save(ordonnance);
+        return ordonnanceMapper.toDto(saved);
     }
 
     @Override
-    public List<Ordonnance> getAllOrdonnance() {
-        return ordonnanceRepository.findAll();
+    public OrdonnanceDto update(OrdonnanceDto dto) {
+        return update(dto.getIdOrdonnance(), dto);
     }
 
     @Override
-    public Ordonnance getByIdOrdonnance(Long id) {
+    public OrdonnanceDto update(Long id, OrdonnanceDto dto) {
+        Ordonnance ordonnance = ordonnanceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Ordonnance not found"));
+        ordonnance.setDate(dto.getDate());
+        Medecine medecine = medecineRepository.findById(dto.getMedecineId())
+                .orElseThrow(() -> new RuntimeException("Medecine not found"));
+        ordonnance.setMedecine(medecine);
+        Ordonnance updated = ordonnanceRepository.save(ordonnance);
+        return ordonnanceMapper.toDto(updated);
+    }
+
+    @Override
+    public OrdonnanceDto delete(Long id) {
+        Ordonnance ordonnance = ordonnanceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Ordonnance not found"));
+        ordonnanceRepository.delete(ordonnance);
+        return ordonnanceMapper.toDto(ordonnance);
+    }
+
+    @Override
+    public OrdonnanceDto findById(Long id) {
         return ordonnanceRepository.findById(id)
-                .orElseThrow(() -> new OrdonnanceNotFoundException("Ordonnance not found"));
-    }
+                .map(ordonnanceMapper::toDto)
+                .orElseThrow(() -> new RuntimeException("Ordonnance not found"));    }
 
     @Override
-    public void deleteOrdonnance(Long id) {
-        if (!ordonnanceRepository.existsById(id)) {
-            throw new OrdonnanceNotFoundException("Ordonnance not found");
-        }
-        ordonnanceRepository.deleteById(id);
-    }
-
-    @Override
-    public void updateOrdonnance(Ordonnance ordonnance) {
-        Ordonnance existing = ordonnanceRepository.findById(ordonnance.getIdOrdonnance())
-                .orElseThrow(() -> new OrdonnanceNotFoundException("Ordonnance not found"));
-
-        if (ordonnance.getDate() != null) {
-            existing.setDate(ordonnance.getDate());
-        }
-        if (ordonnance.getMedecine() != null) {
-            existing.setMedecine(ordonnance.getMedecine());
-        }
-
-        ordonnanceRepository.save(existing);
-
+    public List<OrdonnanceDto> findAll() {
+        return ordonnanceRepository.findAll().stream()
+                .map(ordonnanceMapper::toDto)
+                .toList();
     }
 }

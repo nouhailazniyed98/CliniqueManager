@@ -2,9 +2,11 @@ package org.zzn.hospital.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.zzn.hospital.dtos.MedecineDto;
 import org.zzn.hospital.exceptions.MedecineALreadyExistsException;
 import org.zzn.hospital.exceptions.MedecineNotFoundException;
 import org.zzn.hospital.entitys.Medecine;
+import org.zzn.hospital.mappers.MedecineMapper;
 import org.zzn.hospital.repositories.MedecineRepository;
 
 
@@ -13,51 +15,41 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class MedecineServiceImpl implements MedecineService {
-    public final MedecineRepository medecineRepository;
+    private final MedecineRepository repository;
+    private  final MedecineMapper mapper;
+
     @Override
-    public Medecine addMedecine(Medecine medecine) {
-       if (medecine.getNameMedecine() != null &&
-               medecineRepository.existsByNameMedecine(medecine.getNameMedecine())) {
-     throw new MedecineALreadyExistsException("Medecine already exists");
-       }
-       return medecineRepository.save(medecine);
+    public MedecineDto create(MedecineDto dto) {
+        return mapper.toDto(repository.save(mapper.fromDto(dto)));
     }
 
     @Override
-    public List<Medecine> getAllMedecine() {
-        return medecineRepository.findAll();
+    public MedecineDto update(MedecineDto dto) {
+        return update(dto.getIdMedecine(), dto);
     }
 
     @Override
-    public Medecine getByIdMedecine(Long id) {
-        return medecineRepository.findById(id)
-                .orElseThrow(() -> new MedecineNotFoundException("Medecin not found "));
+    public MedecineDto update(Long id, MedecineDto dto) {
+        Medecine med = repository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
+        med.setNameMedecine(dto.getNameMedecine());
+        med.setDescription(dto.getDescription());
+        med.setUnite(dto.getUnite());
+        return mapper.toDto(repository.save(med));
     }
 
     @Override
-    public void deleteMedecine(Long id) {
-     if (! medecineRepository.existsById(id)) {
-        throw new MedecineNotFoundException("Medecine not found ");
-     }
-        medecineRepository.deleteById(id);
+    public MedecineDto delete(Long id) {
+        Medecine med = repository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
+        repository.delete(med);
+        return mapper.toDto(med);    }
+
+    @Override
+    public MedecineDto findById(Long id) {
+        return repository.findById(id).map(mapper::toDto).orElseThrow(() -> new RuntimeException("Not found"));
     }
 
     @Override
-    public void updateMedecine(Medecine medecine) {
-        Medecine existing = medecineRepository.findById(medecine.getIdMedecine())
-                .orElseThrow(() -> new MedecineNotFoundException("Medecine not found"));
-
-        if (medecine.getNameMedecine() != null) {
-            existing.setNameMedecine(medecine.getNameMedecine());
-        }
-        if (medecine.getDescription() != null) {
-            existing.setDescription(medecine.getDescription());
-        }
-        if (medecine.getUnite() > 0) {
-            existing.setUnite(medecine.getUnite());
-        }
-
-        medecineRepository.save(existing);
+    public List<MedecineDto> findAll() {
+        return repository.findAll().stream().map(mapper::toDto).toList();
     }
-
 }

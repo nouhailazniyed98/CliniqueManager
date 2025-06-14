@@ -6,7 +6,7 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Entity
-@Getter @Setter
+@Data
 @NoArgsConstructor @AllArgsConstructor
 @Builder
 public class Ordonnance {
@@ -21,14 +21,7 @@ public class Ordonnance {
 
 
 
-    @Override
-    public String toString() {
-        return "Ordonnance{" +
-                "idOrdonnance=" + idOrdonnance +
-                ", medecine=" + (medecine != null ? medecine.getNameMedecine() : "null") +
-                ", date=" + date +
-                '}';
-    }
+
 
 
 }

@@ -10,6 +10,7 @@ import lombok.*;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @Builder
+@Data
 public class Medecine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,15 +20,7 @@ public class Medecine {
     private int unite;
 
 
-    @Override
-    public String toString() {
-        return "Medecine{" +
-                "idMedecine=" + idMedecine +
-                ", nameMedecine='" + nameMedecine + '\'' +
-                ", description='" + description + '\'' +
-                ", unite=" + unite +
-                '}';
-    }
+
 
 
 }
