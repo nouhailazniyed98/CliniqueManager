@@ -38,11 +38,6 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public AppointmentDto create(Patient object) {
-        return null;
-    }
-
-    @Override
     public AppointmentDto update(AppointmentDto object) {
         return null;
     }
@@ -66,4 +61,6 @@ public class AppointmentServiceImpl implements AppointmentService {
     public List<AppointmentDto> findAll() {
         return List.of();
     }
+
+
 }

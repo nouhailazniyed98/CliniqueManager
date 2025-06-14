@@ -24,12 +24,6 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorMapper.toDto(saved);
     }
 
-
-    @Override
-    public DoctorDto create(Patient object) {
-        return null;
-    }
-
     @Override
     public DoctorDto update(DoctorDto object) {
         return null;
@@ -54,4 +48,6 @@ public class DoctorServiceImpl implements DoctorService {
     public List<DoctorDto> findAll() {
         return List.of();
     }
+
+
 }

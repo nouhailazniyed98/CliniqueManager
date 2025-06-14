@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CrudService <D,ID>{
 
-    public D create(Patient object);
+    public D create(D object);
     public D update(D object);
 
     D update(ID id, D dto);

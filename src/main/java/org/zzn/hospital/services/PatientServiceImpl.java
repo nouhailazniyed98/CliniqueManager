@@ -27,12 +27,6 @@ public class PatientServiceImpl implements PatientService {
         return patientMapper.toDto(saved);
     }
 
-
-    @Override
-    public PatientDto create(Patient object) {
-        return null;
-    }
-
     @Override
     public PatientDto update(PatientDto object) {
         return null;
@@ -57,4 +51,6 @@ public class PatientServiceImpl implements PatientService {
     public List<PatientDto> findAll() {
         return List.of();
     }
+
+
 }

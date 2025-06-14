@@ -26,11 +26,6 @@ public class PersonnelServiceImpl implements PersonnelService {
     }
 
     @Override
-    public PersonnelDto create(Patient object) {
-        return null;
-    }
-
-    @Override
     public PersonnelDto update(PersonnelDto object) {
         return null;
     }
@@ -54,4 +49,6 @@ public class PersonnelServiceImpl implements PersonnelService {
     public List<PersonnelDto> findAll() {
         return List.of();
     }
+
+
 }
