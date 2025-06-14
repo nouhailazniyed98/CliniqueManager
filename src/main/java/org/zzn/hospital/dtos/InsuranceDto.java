@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class InsuranceDTO {
+public class InsuranceDto {
     private String companyName;
     private String typeCoverage;
     private String iphoneNumber;

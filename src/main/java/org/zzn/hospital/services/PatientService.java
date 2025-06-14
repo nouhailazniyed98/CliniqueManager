@@ -1,18 +1,9 @@
 package org.zzn.hospital.services;
 
-import org.zzn.hospital.entitys.Patient;
 
-import java.util.List;
+import org.zzn.hospital.dtos.PatientDto;
 
-public interface PatientService {
-    Patient addPatient(Patient patient);
+public interface PatientService extends CrudService<PatientDto, Long> {
 
-    Patient getPatientById(Long id);
-
-    List<Patient> getAllPatients();
-
-    void updatePatient(Patient patient);
-
-    void deletePatient(int id);
-
+    PatientDto create(PatientDto patientDto);
 }

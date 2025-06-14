@@ -1,13 +1,18 @@
 package org.zzn.hospital.services;
 
+import org.zzn.hospital.entitys.Patient;
+
 import java.util.List;
 
-public interface CrudService <T,ID>{
+public interface CrudService <D,ID>{
 
-    public T create(T object);
-    public T update(T object);
-    public T delete(ID id);
-    public T findById(ID id);
-    public List<T> findAll();
+    public D create(D object);
+    public D update(D object);
+
+    D update(ID id, D dto);
+
+    public D delete(ID id);
+    public D findById(ID id);
+    public List<D> findAll();
 
 }

@@ -1,8 +1,10 @@
 package org.zzn.hospital.services;
 
 import org.springframework.stereotype.Service;
-import org.zzn.hospital.exceptions.PatientAlreadyExistExcepetion;
+import org.zzn.hospital.dtos.PatientDto;
 import org.zzn.hospital.entitys.Patient;
+import org.zzn.hospital.exceptions.PatientAlreadyExistExcepetion;
+import org.zzn.hospital.mappers.PatientMapper;
 import org.zzn.hospital.repositories.PatientRepository;
 
 import lombok.AllArgsConstructor;
@@ -12,37 +14,43 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class PatientServiceImpl implements PatientService {
-    private final PatientRepository patientRepository; // Dependency Injcetion With constructor
+    private final PatientRepository patientRepository;
+    private final PatientMapper patientMapper;
 
     @Override
-    public Patient addPatient(Patient patient) {
-        if (patientRepository.findPatientByCin(patient.getCin()).isPresent()) {
-            throw new PatientAlreadyExistExcepetion();
+    public PatientDto create(PatientDto patientDto) {
+        if (patientRepository.findPatientByCin(patientDto.getCin()).isPresent()) {
+            throw new PatientAlreadyExistExcepetion(patientDto.getCin());
         }
-        return patientRepository.save(patient);//save in Database + return value
+        Patient patient = patientMapper.fromDto(patientDto);
+        Patient saved = patientRepository.save(patient);
+        return patientMapper.toDto(saved);
     }
 
     @Override
-    public Patient getPatientById(Long id) {
-        return patientRepository.findById(id).get();
+    public PatientDto update(PatientDto object) {
+        return null;
     }
 
     @Override
-    public List<Patient> getAllPatients() {
-        return patientRepository.findAll();
+    public PatientDto update(Long aLong, PatientDto dto) {
+        return null;
     }
 
     @Override
-    public void updatePatient(Patient patient) {
-        Patient tmp = this.getPatientById(patient.getId());
-        patientRepository.save(tmp.builder()
-        .bloodType(patient.getBloodType())
-        .cin(patient.getCin())
-        .build());
+    public PatientDto delete(Long aLong) {
+        return null;
     }
 
     @Override
-    public void deletePatient(int id) {
-
+    public PatientDto findById(Long aLong) {
+        return null;
     }
+
+    @Override
+    public List<PatientDto> findAll() {
+        return List.of();
+    }
+
+
 }

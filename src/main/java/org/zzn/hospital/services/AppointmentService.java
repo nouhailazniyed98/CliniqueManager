@@ -1,12 +1,8 @@
 package org.zzn.hospital.services;
 
-import org.zzn.hospital.entitys.Appointment;
+import org.zzn.hospital.dtos.AppointmentDto;
 
-import java.util.List;
+public interface AppointmentService extends CrudService<AppointmentDto, Long> {
+    AppointmentDto create(AppointmentDto appointmentDto);
 
-public interface AppointmentService {
-    Appointment save(Appointment appointment);
-    List<Appointment> getAll();
-    Appointment getById(Long id);
-    void delete(Long id);
 }
