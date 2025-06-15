@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.zzn.hospital.dtos.DoctorDto;
 import org.zzn.hospital.entitys.Doctor;
 import org.zzn.hospital.entitys.Patient;
+import org.zzn.hospital.exceptions.DoctorNotFoundException;
 import org.zzn.hospital.mappers.DoctorMapper;
 import org.zzn.hospital.repositories.DoctorRepository;
 
@@ -25,29 +26,53 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public DoctorDto update(DoctorDto object) {
-        return null;
+    public DoctorDto update(DoctorDto dto) {
+        if (dto.getId() == null) {
+            throw new IllegalArgumentException("Doctor ID must not be null for update.");
+        }
+        return update(dto.getId(), dto);
     }
 
     @Override
-    public DoctorDto update(Long aLong, DoctorDto dto) {
-        return null;
+    public DoctorDto update(Long id, DoctorDto dto) {
+        Doctor existing = doctorRepository.findById(id)
+                .orElseThrow(() -> new DoctorNotFoundException(id));
+
+        existing.setFirstName(dto.getFirstName());
+        existing.setLastName(dto.getLastName());
+        existing.setSpeciality(dto.getSpeciality());
+        existing.setAddress(dto.getAddress());
+        existing.setAddress(dto.getAddress());
+        existing.setBirthday(dto.getBirthday());
+        existing.setGender(dto.getGender());
+        existing.setPhoneNumber(dto.getPhoneNumber());
+
+
+        Doctor saved = doctorRepository.save(existing);
+        return doctorMapper.toDto(saved);
     }
 
     @Override
-    public DoctorDto delete(Long aLong) {
-        return null;
+    public DoctorDto delete(Long id) {
+        Doctor existing = doctorRepository.findById(id)
+                .orElseThrow(() -> new DoctorNotFoundException(id));
+        doctorRepository.delete(existing);
+        return doctorMapper.toDto(existing);
     }
 
     @Override
-    public DoctorDto findById(Long aLong) {
-        return null;
+    public DoctorDto findById(Long id) {
+        Doctor doctor = doctorRepository.findById(id)
+                .orElseThrow(() -> new DoctorNotFoundException(id));
+        return doctorMapper.toDto(doctor);
     }
 
     @Override
     public List<DoctorDto> findAll() {
-        return List.of();
+        return doctorRepository.findAll()
+                .stream()
+                .map(doctorMapper::toDto)
+                .toList();
     }
-
-
 }
+
