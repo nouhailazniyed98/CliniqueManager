@@ -3,6 +3,7 @@ package org.zzn.hospital.entitys;
 import jakarta.persistence.*;
 import lombok.*;
 
+import lombok.experimental.SuperBuilder;
 import org.zzn.hospital.enums.Gender;
 
 import java.time.LocalDate;
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder(toBuilder = true)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Person {
     @Id

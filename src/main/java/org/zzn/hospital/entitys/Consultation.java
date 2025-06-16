@@ -2,7 +2,6 @@ package org.zzn.hospital.entitys;
 
 import jakarta.persistence.*;
 import lombok.*;
-import  org.zzn.hospital.Repositories.ConsultationRepository;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor

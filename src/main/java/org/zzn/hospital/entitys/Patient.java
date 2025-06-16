@@ -5,13 +5,14 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import lombok.*;
 
+import lombok.experimental.SuperBuilder;
 import org.zzn.hospital.enums.BloodType;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @AllArgsConstructor @NoArgsConstructor
 @Data
-@Builder
+@SuperBuilder
 public class Patient extends Person {
     private BloodType bloodType;
     @Column(unique = true)

@@ -14,7 +14,7 @@ public class PatientController {
         this.patientService = patientService;
     }
     @PostMapping
-    public PatientDto addPatient (@RequestBody Patient patient) {
+    public PatientDto addPatient (@RequestBody PatientDto patient) {
         return patientService.create(patient);
     }
 

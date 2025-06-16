@@ -15,21 +15,21 @@ public class OrdonnanceMedecineController {
 
     @GetMapping
     public List<OrdonnanceMedecine> getAll() {
-        return ordonnanceMedecineService.getAll();
+        return ordonnanceMedecineService.getAllOrdonnanceMedecine();
     }
 
     @GetMapping("/{id}")
     public OrdonnanceMedecine getById(@PathVariable Long id) {
-        return ordonnanceMedecineService.getById(id);
+        return ordonnanceMedecineService.getByIdOrdonnanceMedecine(id);
     }
 
     @PostMapping
     public OrdonnanceMedecine create(@RequestBody OrdonnanceMedecine ordonnanceMedecine) {
-        return ordonnanceMedecineService.save(ordonnanceMedecine);
+        return ordonnanceMedecineService.addOrdonnanceMedecine(ordonnanceMedecine);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        ordonnanceMedecineService.delete(id);
+        ordonnanceMedecineService.deleteOrdonnanceMedecine(id);
     }
 }

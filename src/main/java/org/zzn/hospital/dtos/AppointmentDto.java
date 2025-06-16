@@ -20,5 +20,7 @@ public class AppointmentDto {
     private LocalDateTime createdAt;
     private Long doctorId;
     private Long patientId;
+    private String patientName;
+    private String doctorName;
     private AnnulationConfirmationDto annulationConfirmation;
 }
