@@ -2,6 +2,7 @@ package org.zzn.hospital.entitys;
 
 import jakarta.persistence.Entity;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.zzn.hospital.enums.Speciality;
 
 @EqualsAndHashCode(callSuper = true)
@@ -9,7 +10,7 @@ import org.zzn.hospital.enums.Speciality;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 public class Doctor extends Person{
     private Speciality speciality;
 
