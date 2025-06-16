@@ -11,11 +11,11 @@ import lombok.*;
 @NoArgsConstructor @AllArgsConstructor
 @Builder
 @Data
-public class Medecine {
+public class Medicine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMedecine;
-    private String nameMedecine;
+    private Long idMedicine;
+    private String nameMedicine;
     private String description;
     private int unite;
 

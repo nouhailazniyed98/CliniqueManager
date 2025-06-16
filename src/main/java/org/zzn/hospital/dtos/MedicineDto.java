@@ -6,12 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class MedecineDto {
-    private Long idMedecine;
-    private String nameMedecine;
+public class MedicineDto {
+    private Long idMedicine;
+    private String nameMedicine;
     private String description;
     private int unite;
 }

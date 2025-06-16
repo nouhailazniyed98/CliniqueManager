@@ -3,11 +3,10 @@ package org.zzn.hospital.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.zzn.hospital.dtos.OrdonnanceDTO;
-import org.zzn.hospital.entitys.Medecine;
-import org.zzn.hospital.exceptions.OrdonnanceNotFoundException;
+import org.zzn.hospital.entitys.Medicine;
 import org.zzn.hospital.entitys.Ordonnance;
 import org.zzn.hospital.mappers.OrdonnanceMapper;
-import org.zzn.hospital.repositories.MedecineRepository;
+import org.zzn.hospital.repositories.MedicineRepository;
 import org.zzn.hospital.repositories.OrdonnanceRepository;
 import java.util.List;
 
@@ -15,12 +14,12 @@ import java.util.List;
 @AllArgsConstructor
 public class OrdonnanceServiceImpl implements OrdonnanceService {
      private   final  OrdonnanceRepository ordonnanceRepository;
-     private final MedecineRepository medecineRepository;
+     private final MedicineRepository medecineRepository;
      private final OrdonnanceMapper ordonnanceMapper;
 
     @Override
     public OrdonnanceDTO create(OrdonnanceDTO dto) {
-        Medecine medecine = medecineRepository.findById(dto.getMedecine().getIdMedecine())
+        Medicine medecine = medecineRepository.findById(dto.getMedecine().getIdMedicine())
                 .orElseThrow(() -> new RuntimeException("Medecine not found"));
         Ordonnance ordonnance = ordonnanceMapper.fromDto(dto);
         ordonnance.setMedecine(medecine);
@@ -38,7 +37,7 @@ public class OrdonnanceServiceImpl implements OrdonnanceService {
         Ordonnance ordonnance = ordonnanceRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Ordonnance not found"));
         ordonnance.setDate(dto.getDate());
-        Medecine medecine = medecineRepository.findById(dto.getMedecine().getIdMedecine())
+        Medicine medecine = medecineRepository.findById(dto.getMedecine().getIdMedicine())
                 .orElseThrow(() -> new RuntimeException("Medecine not found"));
         ordonnance.setMedecine(medecine);
         Ordonnance updated = ordonnanceRepository.save(ordonnance);

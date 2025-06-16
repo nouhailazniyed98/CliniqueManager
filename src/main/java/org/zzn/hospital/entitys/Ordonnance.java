@@ -15,7 +15,7 @@ public class Ordonnance {
     private Long idOrdonnance;
     @ManyToOne
     @JoinColumn(name = "medecine_id_medecine")
-    private Medecine medecine;
+    private Medicine medecine;
     private LocalDate date;
 
 

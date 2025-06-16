@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.zzn.hospital.entitys.Medecine;
+import org.zzn.hospital.entitys.Medicine;
 
 import java.time.LocalDate;
 
@@ -14,6 +14,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class OrdonnanceDTO {
     private Long idOrdonnance;
-    private Medecine medecine;
+    private Medicine medecine;
     private LocalDate date;
 }
