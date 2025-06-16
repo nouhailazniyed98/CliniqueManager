@@ -2,7 +2,7 @@ package org.zzn.hospital.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.zzn.hospital.dtos.ConsultationDto;
+import org.zzn.hospital.dtos.ConsultationDTO;
 import org.zzn.hospital.exceptions.ConsultationAlreadyExistsException;
 import org.zzn.hospital.exceptions.ConsultationNotFoundException;
 import org.zzn.hospital.entitys.Consultation;
@@ -20,14 +20,14 @@ public class ConsultationServiceImpl implements  ConsultationService {
     private final ConsultationMapper consultationMapper;
 
     @Override
-    public ConsultationDto create(ConsultationDto dto) {
+    public ConsultationDTO create(ConsultationDTO dto) {
         Consultation consultation = consultationMapper.fromDto(dto);
         Consultation saved = consultationRepository.save(consultation);
         return consultationMapper.toDto(saved);
     }
 
     @Override
-    public ConsultationDto update(Long id,ConsultationDto dto) {
+    public ConsultationDTO update(Long id,ConsultationDTO dto) {
         Consultation consultation = consultationRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Consultation not found"));
         consultation.setDiagnostic(dto.getDiagnostic());
@@ -37,12 +37,12 @@ public class ConsultationServiceImpl implements  ConsultationService {
     }
 
     @Override
-    public ConsultationDto update( ConsultationDto dto) {
+    public ConsultationDTO update( ConsultationDTO dto) {
         return update(dto.getIdConsultation(),dto);
     }
 
     @Override
-    public ConsultationDto delete(Long id) {
+    public ConsultationDTO delete(Long id) {
         Consultation consultation = consultationRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Consultation not found"));
         consultationRepository.delete(consultation);
@@ -50,14 +50,14 @@ public class ConsultationServiceImpl implements  ConsultationService {
     }
 
     @Override
-    public ConsultationDto findById(Long id) {
+    public ConsultationDTO findById(Long id) {
         return consultationRepository.findById(id)
                 .map(consultationMapper::toDto)
                 .orElseThrow(() -> new RuntimeException("Consultation not found"));
     }
 
     @Override
-    public List<ConsultationDto> findAll() {
+    public List<ConsultationDTO> findAll() {
         return consultationRepository.findAll()
                 .stream()
                 .map(consultationMapper::toDto)
