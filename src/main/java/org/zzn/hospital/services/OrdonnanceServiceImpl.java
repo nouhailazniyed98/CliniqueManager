@@ -2,7 +2,7 @@ package org.zzn.hospital.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.zzn.hospital.dtos.OrdonnanceDto;
+import org.zzn.hospital.dtos.OrdonnanceDTO;
 import org.zzn.hospital.entitys.Medecine;
 import org.zzn.hospital.exceptions.OrdonnanceNotFoundException;
 import org.zzn.hospital.entitys.Ordonnance;
@@ -19,8 +19,8 @@ public class OrdonnanceServiceImpl implements OrdonnanceService {
      private final OrdonnanceMapper ordonnanceMapper;
 
     @Override
-    public OrdonnanceDto create(OrdonnanceDto dto) {
-        Medecine medecine = medecineRepository.findById(dto.getMedecineId())
+    public OrdonnanceDTO create(OrdonnanceDTO dto) {
+        Medecine medecine = medecineRepository.findById(dto.getMedecine().getIdMedecine())
                 .orElseThrow(() -> new RuntimeException("Medecine not found"));
         Ordonnance ordonnance = ordonnanceMapper.fromDto(dto);
         ordonnance.setMedecine(medecine);
@@ -29,16 +29,16 @@ public class OrdonnanceServiceImpl implements OrdonnanceService {
     }
 
     @Override
-    public OrdonnanceDto update(OrdonnanceDto dto) {
+    public OrdonnanceDTO update(OrdonnanceDTO dto) {
         return update(dto.getIdOrdonnance(), dto);
     }
 
     @Override
-    public OrdonnanceDto update(Long id, OrdonnanceDto dto) {
+    public OrdonnanceDTO update(Long id, OrdonnanceDTO dto) {
         Ordonnance ordonnance = ordonnanceRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Ordonnance not found"));
         ordonnance.setDate(dto.getDate());
-        Medecine medecine = medecineRepository.findById(dto.getMedecineId())
+        Medecine medecine = medecineRepository.findById(dto.getMedecine().getIdMedecine())
                 .orElseThrow(() -> new RuntimeException("Medecine not found"));
         ordonnance.setMedecine(medecine);
         Ordonnance updated = ordonnanceRepository.save(ordonnance);
@@ -46,7 +46,7 @@ public class OrdonnanceServiceImpl implements OrdonnanceService {
     }
 
     @Override
-    public OrdonnanceDto delete(Long id) {
+    public OrdonnanceDTO delete(Long id) {
         Ordonnance ordonnance = ordonnanceRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Ordonnance not found"));
         ordonnanceRepository.delete(ordonnance);
@@ -54,14 +54,15 @@ public class OrdonnanceServiceImpl implements OrdonnanceService {
     }
 
     @Override
-    public OrdonnanceDto findById(Long id) {
+    public OrdonnanceDTO findById(Long id) {
         return ordonnanceRepository.findById(id)
                 .map(ordonnanceMapper::toDto)
                 .orElseThrow(() -> new RuntimeException("Ordonnance not found"));    }
 
     @Override
-    public List<OrdonnanceDto> findAll() {
-        return ordonnanceRepository.findAll().stream()
+    public List<OrdonnanceDTO> findAll() {
+        return ordonnanceRepository.findAll()
+                .stream()
                 .map(ordonnanceMapper::toDto)
                 .toList();
     }

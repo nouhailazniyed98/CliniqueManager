@@ -3,6 +3,7 @@ package org.zzn.hospital.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.zzn.hospital.dtos.OrdonnanceDTO;
 import org.zzn.hospital.services.OrdonnanceService;
 import java.util.List;
 

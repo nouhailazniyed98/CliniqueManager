@@ -2,6 +2,7 @@ package org.zzn.hospital.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.zzn.hospital.dtos.ConsultationDTO;
 import org.zzn.hospital.entitys.Consultation;
 import org.zzn.hospital.mappers.ConsultationMapper;
 import org.zzn.hospital.repositories.ConsultationRepository;

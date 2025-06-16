@@ -2,36 +2,41 @@ package org.zzn.hospital.controllers;
 
 
 import org.springframework.web.bind.annotation.*;
+import org.zzn.hospital.dtos.ConsultationDTO;
 import org.zzn.hospital.entitys.Consultation;
 import org.zzn.hospital.services.ConsultationService;
 
+
 import java.util.List;
 
+
 @RestController
-@RequestMapping("/consultations")
+@RequestMapping("/api/consultations")
 public class ConsultationController {
 
-    private ConsultationService consultationService;
-
+    private final   ConsultationService consultationService;
+    public ConsultationController(ConsultationService consultationService) {
+        this.consultationService = consultationService;
+    }
     @GetMapping
-    public List<Consultation> getAllConsultations() {
-        return consultationService.getAllConsultations();
+    public List<ConsultationDTO> getAllConsultations() {
+        return consultationService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Consultation getByIdConsultation(@PathVariable Long id) {
-        return consultationService.getByIdConsultation(id);
+    public ConsultationDTO getByIdConsultation(@PathVariable Long id) {
+        return consultationService.findById(id );
     }
 
 
     @PostMapping
-    public Consultation createConsultation(@RequestBody ConsultationDTO dto) {
-       Consultation consultation = Consultation.builder()
-               .diagnostic(dto.getDiagnostic())
-               .remarque(dto.getRemarque())
-        .build();
+    public ConsultationDTO createConsultation(@RequestBody ConsultationDTO dto) {
+        Consultation consultation = Consultation.builder()
+                .diagnostic(dto.getDiagnostic())
+                .remarque(dto.getRemarque())
+                .build();
 
-        return consultationService.addConsultation(consultation);
+        return consultationService.create(dto);
     }
 
     @PutMapping("/{id}")
@@ -42,11 +47,15 @@ public class ConsultationController {
                 .remarque(dto.getRemarque())
                 .build();
 
-        consultationService.updateConsultation(consultation);
+        consultationService.update( dto);
+
     }
+
+
     @DeleteMapping("/{id}")
-    public void deleteConsultation(@PathVariable Long id) {
-        consultationService.deleteConsultation(id);
+    public ConsultationDTO deleteConsultation(@PathVariable Long id) {
+
+        return consultationService.delete(id);
     }
 
 

@@ -1,6 +1,7 @@
 package org.zzn.hospital.mappers;
 
 import org.mapstruct.Mapper;
+import org.zzn.hospital.dtos.ConsultationDTO;
 import org.zzn.hospital.entitys.Consultation;
 
 @Mapper(componentModel = "spring")

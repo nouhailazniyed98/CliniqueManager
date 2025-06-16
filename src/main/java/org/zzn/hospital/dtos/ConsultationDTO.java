@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class ConsultationDTO {
+    private Long idConsultation;
     private String diagnostic;
     private String remarque;
 }
