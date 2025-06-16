@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.zzn.hospital.dtos.OrdonnanceDto;
+import org.zzn.hospital.dtos.OrdonnanceDTO;
 import org.zzn.hospital.entitys.Ordonnance;
 import org.zzn.hospital.services.OrdonnanceService;
 import java.util.List;
@@ -16,27 +16,27 @@ public class OrdonnanceController {
     private final OrdonnanceService ordonnanceService;
 
     @PostMapping
-    public ResponseEntity<OrdonnanceDto> create(@RequestBody OrdonnanceDto dto) {
+    public ResponseEntity<OrdonnanceDTO> create(@RequestBody OrdonnanceDTO dto) {
         return ResponseEntity.ok(ordonnanceService.create(dto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrdonnanceDto> update(@PathVariable Long id, @RequestBody OrdonnanceDto dto) {
+    public ResponseEntity<OrdonnanceDTO> update(@PathVariable Long id, @RequestBody OrdonnanceDTO dto) {
         return ResponseEntity.ok(ordonnanceService.update(id, dto));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrdonnanceDto> findById(@PathVariable Long id) {
+    public ResponseEntity<OrdonnanceDTO> findById(@PathVariable Long id) {
         return ResponseEntity.ok(ordonnanceService.findById(id));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<OrdonnanceDto> delete(@PathVariable Long id) {
+    public ResponseEntity<OrdonnanceDTO> delete(@PathVariable Long id) {
         return ResponseEntity.ok(ordonnanceService.delete(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<OrdonnanceDto>> findAll() {
+    public ResponseEntity<List<OrdonnanceDTO>> findAll() {
         return ResponseEntity.ok(ordonnanceService.findAll());
     }
 }
