@@ -9,9 +9,9 @@ import org.zzn.hospital.entitys.Medecine;
 import java.time.LocalDate;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class OrdonnanceDTO {
     private Medecine medecine;
     private LocalDate date;

@@ -1,9 +1,7 @@
 package org.zzn.hospital.controllers;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.zzn.hospital.dtos.ConsultationDTO;
 import org.zzn.hospital.entitys.Consultation;
 import org.zzn.hospital.services.ConsultationService;
 

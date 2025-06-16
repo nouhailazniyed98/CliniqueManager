@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class ConsultationDTO {
-     private String diagnostic;
-     private String remarque;
+    private String diagnostic;
+    private String remarque;
 }
