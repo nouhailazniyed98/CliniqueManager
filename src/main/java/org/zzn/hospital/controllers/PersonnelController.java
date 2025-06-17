@@ -34,4 +34,17 @@ public class PersonnelController {
     public ResponseEntity<List<PersonnelDto>> getAll() {
         return ResponseEntity.ok(personnelService.findAll());
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PersonnelDto> updatePersonnel(@PathVariable Long id,
+                                                        @RequestBody PersonnelDto personnelDto) {
+        PersonnelDto updatedPersonnel = personnelService.update(id, personnelDto);
+        return ResponseEntity.ok(updatedPersonnel);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        personnelService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
