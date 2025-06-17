@@ -28,7 +28,7 @@ public class PharmacyServiceImpl implements PharmacyService {
     public PharmacyDto update(Integer id, PharmacyDto dto) {
         Pharmacy entity = repository.findById(id).orElseThrow();
         entity.setNamePharmacy(dto.getNamePharmacy());
-        entity.setPhoneNumber(dto.getPhonePharmacy());
+        entity.setPhonePharmacy(dto.getPhonePharmacy());
         entity.setEmailPharmacy(dto.getEmailPharmacy());
         return mapper.toDto(repository.save(entity));    }
 

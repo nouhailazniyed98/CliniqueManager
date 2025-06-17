@@ -6,7 +6,7 @@ import org.zzn.hospital.dtos.OrdonnanceDTO;
 import org.zzn.hospital.dtos.OrdonnanceDTO;
 import org.zzn.hospital.entitys.Ordonnance;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = { MedicineMapper.class })
 public interface OrdonnanceMapper {
     OrdonnanceDTO toDto(Ordonnance ordonnance);
 

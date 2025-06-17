@@ -1,7 +1,9 @@
 package org.zzn.hospital.services;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import org.zzn.hospital.dtos.OrdonnanceDTO;
 import org.zzn.hospital.entitys.Medicine;
 import org.zzn.hospital.entitys.Ordonnance;
@@ -19,10 +21,16 @@ public class OrdonnanceServiceImpl implements OrdonnanceService {
 
     @Override
     public OrdonnanceDTO create(OrdonnanceDTO dto) {
+        if (dto.getMedecine() == null || dto.getMedecine().getIdMedicine() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le champ 'medecine.idMedicine' est requis");
+        }
+
         Medicine medecine = medecineRepository.findById(dto.getMedecine().getIdMedicine())
-                .orElseThrow(() -> new RuntimeException("Medecine not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Médecine introuvable"));
+
         Ordonnance ordonnance = ordonnanceMapper.fromDto(dto);
         ordonnance.setMedecine(medecine);
+
         Ordonnance saved = ordonnanceRepository.save(ordonnance);
         return ordonnanceMapper.toDto(saved);
     }

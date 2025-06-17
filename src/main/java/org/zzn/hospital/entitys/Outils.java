@@ -1,9 +1,6 @@
 package org.zzn.hospital.entitys;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -17,7 +14,8 @@ public class Outils {
     private int idOutils;
     private String nameOutils;
     private String description;
-    private boolean availibility;
+    @Column(name="availability")
+    private boolean availability;
 
 
 

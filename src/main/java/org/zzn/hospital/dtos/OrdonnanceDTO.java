@@ -14,6 +14,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class OrdonnanceDTO {
     private Long idOrdonnance;
-    private Medicine medecine;
+    private MedicineDto medecine;
     private LocalDate date;
 }

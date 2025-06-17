@@ -14,6 +14,7 @@ import java.util.List;
 @RequestMapping("/api/ordonnances-medecines")
 @RequiredArgsConstructor
 public class OrdonnanceMedecineController {
+    @Autowired
     private OrdonnanceMedecineService service;
 
 
