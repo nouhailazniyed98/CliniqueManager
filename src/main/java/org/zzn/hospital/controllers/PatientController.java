@@ -28,6 +28,11 @@ public class PatientController {
         return patientService.update(id);
     }
 
+    @PutMapping("/{id}")
+    public PatientDto updatePatient(@PathVariable Long id, @RequestBody PatientDto patient) {
+        return patientService.update(id, patient);
+    }
+
     @DeleteMapping("/{id}")
     public void deletePatient(@PathVariable int id) {
         patientService.delete((long) id);

@@ -11,7 +11,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/doctors")
 public class DoctorController {
-    private DoctorService doctorService;
+    private final DoctorService doctorService;
+    public DoctorController(DoctorService doctorService) {
+        this.doctorService = doctorService;
+    }
 
     @PostMapping
     public ResponseEntity<DoctorDto> createDoctor(@RequestBody DoctorDto doctorDto) {
@@ -29,4 +32,17 @@ public class DoctorController {
     public ResponseEntity<List<DoctorDto>> getAll() {
         return ResponseEntity.ok(doctorService.findAll());
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<DoctorDto> updateDoctor(@PathVariable Long id, @RequestBody DoctorDto doctorDto) {
+        DoctorDto updated = doctorService.update(id, doctorDto);
+        return ResponseEntity.ok(updated);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteDoctor(@PathVariable Long id) {
+        doctorService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
