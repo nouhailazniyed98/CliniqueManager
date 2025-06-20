@@ -11,51 +11,49 @@ import org.zzn.hospital.mappers.OrdonnanceMapper;
 import org.zzn.hospital.repositories.MedicineRepository;
 import org.zzn.hospital.repositories.OrdonnanceRepository;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class OrdonnanceServiceImpl implements OrdonnanceService {
      private   final  OrdonnanceRepository ordonnanceRepository;
-     private final MedicineRepository medecineRepository;
+
      private final OrdonnanceMapper ordonnanceMapper;
 
     @Override
     public OrdonnanceDTO create(OrdonnanceDTO dto) {
-        if (dto.getMedecine() == null || dto.getMedecine().getIdMedicine() == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le champ 'medecine.idMedicine' est requis");
+        if (dto.getMedecine() == null || dto.getMedecine().isBlank()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le champ 'medicine' est requis");
         }
 
-        Medicine medecine = medecineRepository.findById(dto.getMedecine().getIdMedicine())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Médecine introuvable"));
-
         Ordonnance ordonnance = ordonnanceMapper.fromDto(dto);
-        ordonnance.setMedecine(medecine);
-
-        Ordonnance saved = ordonnanceRepository.save(ordonnance);
-        return ordonnanceMapper.toDto(saved);
+        ordonnance = ordonnanceRepository.save(ordonnance);
+        return ordonnanceMapper.toDto(ordonnance);
     }
 
     @Override
     public OrdonnanceDTO update(OrdonnanceDTO dto) {
+
         return update(dto.getIdOrdonnance(), dto);
     }
 
     @Override
     public OrdonnanceDTO update(Long id, OrdonnanceDTO dto) {
         Ordonnance ordonnance = ordonnanceRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Ordonnance not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Ordonnance introuvable"));
+
+        ordonnance.setMedecine(dto.getMedecine());
         ordonnance.setDate(dto.getDate());
-        Medicine medecine = medecineRepository.findById(dto.getMedecine().getIdMedicine())
-                .orElseThrow(() -> new RuntimeException("Medecine not found"));
-        ordonnance.setMedecine(medecine);
-        Ordonnance updated = ordonnanceRepository.save(ordonnance);
-        return ordonnanceMapper.toDto(updated);
+
+        ordonnance = ordonnanceRepository.save(ordonnance);
+        return ordonnanceMapper.toDto(ordonnance);
     }
 
     @Override
     public OrdonnanceDTO delete(Long id) {
         Ordonnance ordonnance = ordonnanceRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Ordonnance not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Ordonnance introuvable"));
+
         ordonnanceRepository.delete(ordonnance);
         return ordonnanceMapper.toDto(ordonnance);
     }
@@ -64,13 +62,14 @@ public class OrdonnanceServiceImpl implements OrdonnanceService {
     public OrdonnanceDTO findById(Long id) {
         return ordonnanceRepository.findById(id)
                 .map(ordonnanceMapper::toDto)
-                .orElseThrow(() -> new RuntimeException("Ordonnance not found"));    }
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Ordonnance introuvable"));
+    }
 
     @Override
     public List<OrdonnanceDTO> findAll() {
         return ordonnanceRepository.findAll()
                 .stream()
                 .map(ordonnanceMapper::toDto)
-                .toList();
+                .collect(Collectors.toList());
     }
 }

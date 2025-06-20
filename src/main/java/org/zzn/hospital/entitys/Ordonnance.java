@@ -13,9 +13,7 @@ public class Ordonnance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idOrdonnance;
-    @ManyToOne
-    @JoinColumn(name = "medecine_id_medecine")
-    private Medicine medecine;
+    private String medecine;
     private LocalDate date;
 
 

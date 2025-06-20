@@ -28,7 +28,7 @@ public class ConsultationServiceImpl implements  ConsultationService {
     @Override
     public ConsultationDTO update(Long id,ConsultationDTO dto) {
         Consultation consultation = consultationRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Consultation not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Consultation not found"));
         consultation.setDiagnostic(dto.getDiagnostic());
         consultation.setRemarque(dto.getRemarque());
         Consultation updated = consultationRepository.save(consultation);
@@ -52,7 +52,7 @@ public class ConsultationServiceImpl implements  ConsultationService {
     public ConsultationDTO findById(Long id) {
         return consultationRepository.findById(id)
                 .map(consultationMapper::toDto)
-                .orElseThrow(() -> new RuntimeException("Consultation not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Consultation not found"));
     }
 
     @Override

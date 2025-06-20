@@ -1,6 +1,7 @@
 package org.zzn.hospital.controllers;
 
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.zzn.hospital.dtos.ConsultationDTO;
 import org.zzn.hospital.entitys.Consultation;
@@ -38,17 +39,13 @@ public class ConsultationController {
 
         return consultationService.create(dto);
     }
-
     @PutMapping("/{id}")
-    public void updateConsultation(@PathVariable Long id, @RequestBody ConsultationDTO dto) {
-       // Consultation consultation = Consultation.builder()
-          //      .idConsultation(id)
-          //      .diagnostic(dto.getDiagnostic())
-         //       .remarque(dto.getRemarque())
-           //     .build();
-
-        consultationService.update(id, dto);
-
+    public ResponseEntity<ConsultationDTO> updateConsultation(@PathVariable Long id, @RequestBody ConsultationDTO dto) {
+        ConsultationDTO updatedDto = consultationService.update(id, dto);
+        if (updatedDto == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updatedDto);
     }
 
 
