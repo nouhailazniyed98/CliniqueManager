@@ -5,6 +5,8 @@ import org.zzn.hospital.dtos.PatientDto;
 import org.zzn.hospital.entitys.Patient;
 import org.zzn.hospital.services.PatientService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/patients")
 public class PatientController {
@@ -19,8 +21,8 @@ public class PatientController {
     }
 
     @GetMapping
-    public Class<? extends PatientService> getAllPatients() {
-        return patientService.getClass();
+    public List<PatientDto> getAllPatients() {
+        return patientService.findAll();
     }
 
     @GetMapping("/{id}")

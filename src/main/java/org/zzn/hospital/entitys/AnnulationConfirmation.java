@@ -20,4 +20,7 @@ public class AnnulationConfirmation {
     private Long id;
     private LocalDate dateAction;
     private TypeAction typeAction;
+    private Long appointmentId;
+    private Long patientId;
+    private String patientName;
 }

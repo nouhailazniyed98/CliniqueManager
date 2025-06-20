@@ -34,14 +34,14 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDto update(PatientDto object) {
-        PatientDto patientDto = new PatientDto();
+    public PatientDto update(PatientDto patientDto) {
         Patient existing = (Patient) patientRepository.findPatientByCin(patientDto.getCin())
                 .orElseThrow(() -> new PatientNotFoundException(patientDto.getCin()));
         Patient updated = patientMapper.fromDto(patientDto);
         updated.setId(existing.getId());
         Patient saved = patientRepository.save(updated);
         return patientMapper.toDto(saved);
+
     }
 
     @Override
