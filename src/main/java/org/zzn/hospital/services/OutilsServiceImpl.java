@@ -29,7 +29,7 @@ public class OutilsServiceImpl implements OutilsService {
         Outils entity = repository.findById(id).orElseThrow();
         entity.setNameOutils(dto.getNameOutils());
         entity.setDescription(dto.getDescription());
-        entity.setAvailibility(dto.isAvailability());
+        entity.setAvailability(dto.isAvailability());
         return mapper.toDto(repository.save(entity));    }
 
     @Override

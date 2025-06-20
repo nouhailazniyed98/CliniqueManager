@@ -1,7 +1,9 @@
 package org.zzn.hospital.services;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import org.zzn.hospital.dtos.ConsultationDTO;
 import org.zzn.hospital.entitys.Consultation;
 import org.zzn.hospital.mappers.ConsultationMapper;
@@ -41,7 +43,7 @@ public class ConsultationServiceImpl implements  ConsultationService {
     @Override
     public ConsultationDTO delete(Long id) {
         Consultation consultation = consultationRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Consultation not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Consultation not found"));
         consultationRepository.delete(consultation);
         return consultationMapper.toDto(consultation);
     }

@@ -41,13 +41,13 @@ public class ConsultationController {
 
     @PutMapping("/{id}")
     public void updateConsultation(@PathVariable Long id, @RequestBody ConsultationDTO dto) {
-        Consultation consultation = Consultation.builder()
-                .idConsultation(id)
-                .diagnostic(dto.getDiagnostic())
-                .remarque(dto.getRemarque())
-                .build();
+       // Consultation consultation = Consultation.builder()
+          //      .idConsultation(id)
+          //      .diagnostic(dto.getDiagnostic())
+         //       .remarque(dto.getRemarque())
+           //     .build();
 
-        consultationService.update( dto);
+        consultationService.update(id, dto);
 
     }
 
